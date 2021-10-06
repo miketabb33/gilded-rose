@@ -1,23 +1,13 @@
-export class Item {
-    name: string;
-    sellIn: number;
-    quality: number;
+import Item from "./item";
 
-    constructor(name, sellIn, quality) {
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
-    }
-}
-
-export class GildedRose {
+export default class GildedRoseInn {
     items: Array<Item>;
 
     constructor(items = [] as Array<Item>) {
         this.items = items;
     }
 
-    updateQuality() {
+    processEndOfDayAndGetUpdatedItems() {
         for (let i = 0; i < this.items.length; i++) {
             if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
                 if (this.items[i].quality > 0) {
