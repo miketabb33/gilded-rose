@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import LegendaryItem from '../app/items/legendary-item';
 import ItemType from '../app/item-type';
-import CommonItem from '../app/items/common-item';
+import NormalItem from '../app/items/normal-item';
 import AgedItem from '../app/items/aged-item';
 import BackstagePassItem from '../app/items/backstage-pass-item';
 
@@ -15,15 +15,15 @@ describe("Item Type", ()=> {
     subject = new ItemType
   })
 
-  it("is common should return true when item is common", ()=> {
-    const commonItem = new CommonItem(whateverName, whateverSellIn, whateverQuality) 
-    const result = subject.isCommonItem(commonItem)
+  it("is normal should return true when item is normal", ()=> {
+    const commonItem = new NormalItem(whateverName, whateverSellIn, whateverQuality) 
+    const result = subject.isNormal(commonItem)
     expect(result).to.true
   }) 
 
-  it("is common should return false when item is not common", ()=> {
+  it("is normal should return false when item is not normal", ()=> {
     const legendaryItem = new LegendaryItem(whateverName, whateverSellIn, whateverQuality) 
-    const result = subject.isCommonItem(legendaryItem)
+    const result = subject.isNormal(legendaryItem)
     expect(result).to.false
   }) 
 
@@ -34,7 +34,7 @@ describe("Item Type", ()=> {
   }) 
 
   it("is legendary should return false when item is not legendary", ()=> {
-    const commonItem = new CommonItem(whateverName, whateverSellIn, whateverQuality) 
+    const commonItem = new NormalItem(whateverName, whateverSellIn, whateverQuality) 
     const result = subject.isLegendary(commonItem)
     expect(result).to.false
   }) 
@@ -46,7 +46,7 @@ describe("Item Type", ()=> {
   }) 
 
   it("is aged should return false when item is not aged", ()=> {
-    const commonItem = new CommonItem(whateverName, whateverSellIn, whateverQuality) 
+    const commonItem = new NormalItem(whateverName, whateverSellIn, whateverQuality) 
     const result = subject.isAged(commonItem)
     expect(result).to.false
   }) 
@@ -58,7 +58,7 @@ describe("Item Type", ()=> {
   }) 
 
   it("is backstage pass should return false when item is not backstage pass", ()=> {
-    const commonItem = new CommonItem(whateverName, whateverSellIn, whateverQuality) 
+    const commonItem = new NormalItem(whateverName, whateverSellIn, whateverQuality) 
     const result = subject.isBackstagePass(commonItem)
     expect(result).to.false
   }) 

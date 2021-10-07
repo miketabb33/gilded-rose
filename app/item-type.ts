@@ -1,12 +1,12 @@
 import AgedItem from "./items/aged-item"
 import BackstagePassItem from "./items/backstage-pass-item"
-import CommonItem from "./items/common-item"
+import NormalItem from "./items/normal-item"
 import Item from "./items/item"
 import LegendaryItem from "./items/legendary-item"
 
 export default class ItemType {
-   isCommonItem(item: Item): boolean {
-      return item instanceof CommonItem
+   isNormal(item: Item): boolean {
+      return item instanceof NormalItem
    }
 
    isLegendary(item: Item): boolean {

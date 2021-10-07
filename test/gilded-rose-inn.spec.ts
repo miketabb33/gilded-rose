@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import GildedRoseInn from '../app/gilded-rose-inn';
 import AgedItem from '../app/items/aged-item';
 import BackstagePassItem from '../app/items/backstage-pass-item';
-import CommonItem from '../app/items/common-item';
+import NormalItem from '../app/items/normal-item';
 import LegendaryItem from '../app/items/legendary-item';
 
 describe('Gilded Rose Inn', ()=> {
@@ -10,11 +10,11 @@ describe('Gilded Rose Inn', ()=> {
         // this conjured item does not work properly yet
         // new Item("Conjured Mana Cake", 3, 6)
     ] 
-    it('common item quality and sell in should both decrease by 1 for when sell in is above 0', ()=> {
+    it('normal item quality and sell in should both decrease by 1 for when sell in is above 0', ()=> {
         const name = "Elixir of the Mongoose"
         const sellIn = 5
         const quality = 7
-        const item = new CommonItem(name, sellIn, quality)
+        const item = new NormalItem(name, sellIn, quality)
         const subject = new GildedRoseInn([item]) 
 
         const results = subject.processEndOfDayAndGetUpdatedItems()
@@ -24,11 +24,11 @@ describe('Gilded Rose Inn', ()=> {
         expect(results[0].quality).to.equal(quality-1)
     })
 
-    it('common item quality should decrease by 2 and sell in should decrease by 1 for when sell in is equal or less then 0, set to 0', ()=> {
+    it('normal item quality should decrease by 2 and sell in should decrease by 1 for when sell in is equal or less then 0, set to 0', ()=> {
         const name = "Elixir of the Mongoose"
         const sellIn = 0
         const quality = 7
-        const item = new CommonItem(name, sellIn, quality)
+        const item = new NormalItem(name, sellIn, quality)
         const subject = new GildedRoseInn([item]) 
 
         const results = subject.processEndOfDayAndGetUpdatedItems()
@@ -38,11 +38,11 @@ describe('Gilded Rose Inn', ()=> {
         expect(results[0].quality).to.equal(quality-2)
     })
 
-    it('common item quality should decrease by 2 and sell in should decrease by 1 for when sell in is equal or less then 0, set to -1', ()=> {
+    it('normal item quality should decrease by 2 and sell in should decrease by 1 for when sell in is equal or less then 0, set to -1', ()=> {
         const name = "Elixir of the Mongoose"
         const sellIn = -1
         const quality = 7
-        const item = new CommonItem(name, sellIn, quality)
+        const item = new NormalItem(name, sellIn, quality)
         const subject = new GildedRoseInn([item]) 
 
         const results = subject.processEndOfDayAndGetUpdatedItems()

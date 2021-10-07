@@ -12,55 +12,72 @@ export default class GildedRoseInn {
     processEndOfDayAndGetUpdatedItems() {
         for (let i = 0; i < this.#items.length; i++) {
             const item = this.#items[i]
-            if (!this.#itemType.isAged(item) && !this.#itemType.isBackstagePass(item)) {
-                if (item.quality > 0) {
-                    if (!this.#itemType.isLegendary(item)) {
-                        item.quality = item.quality - 1
-                    }
-                }
+            if(this.#itemType.isLegendary(item)) {
+                
             } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-                    this.handleBackstageQualityBonus(item) 
-                }
-            }
-            if (!this.#itemType.isLegendary(item)) {
-                item.sellIn = item.sellIn - 1;
-            }
-            if (item.sellIn < 0) {
-                if (!this.#itemType.isAged(item)) {
-                    if (!this.#itemType.isBackstagePass(item)) {
-                        if (item.quality > 0) {
-                            if (!this.#itemType.isLegendary(item)) {
-                                item.quality = item.quality - 1
-                            }
-                        }
-                    } else {
-                        item.quality = 0
-                    }
+                this.legacyCode(item)
+            } 
+        }
+        return this.#items;
+    }
+
+    legacyCode(item: Item) {
+        if (this.#itemType.isAged(item) || this.#itemType.isBackstagePass(item)) {
+            this.incrementQualityUnlessAtMax(item, 1)
+            this.handleBackstageQualityBonus(item) 
+        } else {
+            this.decrementQualityUnlessAtMin(item, 1)
+        }
+
+        this.decrementSellIn(item)
+
+        if (this.itemExceededSellIn(item)) {
+            if (this.#itemType.isAged(item)) {
+                this.incrementQualityUnlessAtMax(item, 1)
+            } else {
+                if (this.#itemType.isBackstagePass(item)) {
+                    this.setQualityTo0(item)
                 } else {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1
-                    }
+                    this.decrementQualityUnlessAtMin(item, 1)
                 }
             }
         }
-
-        return this.#items;
     }
 
     handleBackstageQualityBonus(item: Item) {
         if (this.#itemType.isBackstagePass(item)) {
             if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-                }
+               this.incrementQualityUnlessAtMax(item, 1) 
             }
             if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-                }
+                this.incrementQualityUnlessAtMax(item, 1)
             }
         }
-   } 
+    } 
+
+    incrementQualityUnlessAtMax(item: Item, amount: number) {
+        item.quality = item.quality + amount
+        if (item.quality >= 50) {
+            item.quality = 50
+        }
+    }
+
+    decrementQualityUnlessAtMin(item: Item, amount: number) {
+        item.quality = item.quality - amount
+        if (item.quality <= 0) {
+            item.quality = 0
+        }
+    }
+
+    decrementSellIn(item: Item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+    setQualityTo0(item: Item) {
+        item.quality = 0
+    }
+
+    itemExceededSellIn(item: Item): boolean {
+      return item.sellIn < 0
+    }
 }
