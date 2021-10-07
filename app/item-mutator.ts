@@ -1,4 +1,3 @@
-
 export default class ItemMutator {
   #maxQuality = 50
   #minQuality = 0
