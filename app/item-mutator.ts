@@ -1,25 +1,26 @@
-import Item from "./items/item"
 
 export default class ItemMutator {
-  incrementQualityUnlessAtMax(item: Item, amount: number) {
-    item.quality = item.quality + amount
-    if (item.quality >= 50) {
-      item.quality = 50
+  #maxQuality = 50
+  #minQuality = 0
+
+  increaseQualityUnlessAtMax(currentQuality: number, amount: number): number {
+    var newQuality = currentQuality + amount
+    if (newQuality >= this.#maxQuality) {
+      newQuality = this.#maxQuality 
     }
+    return newQuality
   }
 
-  decrementQualityUnlessAtMin(item: Item, amount: number) {
-    item.quality = item.quality - amount
-    if (item.quality <= 0) {
-      item.quality = 0
+  decreaseQualityUnlessAtMin(currentQuality: number, amount: number): number {
+    var newQuality = currentQuality - amount
+    if (newQuality <= this.#minQuality) {
+      newQuality = this.#minQuality
     }
+    return newQuality
   }
 
-  decrementSellIn(item: Item) {
-    item.sellIn = item.sellIn - 1;
-  }
-
-  setQualityTo0(item: Item) {
-    item.quality = 0
+  decreaseSellIn(currentSellIn: number, amount: number): number {
+    var newSellIn = currentSellIn - amount
+    return newSellIn
   }
 }

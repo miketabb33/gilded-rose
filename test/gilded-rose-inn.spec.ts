@@ -17,7 +17,7 @@ describe('Gilded Rose Inn', () => {
     const item = new NormalItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -31,7 +31,7 @@ describe('Gilded Rose Inn', () => {
     const item = new NormalItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -45,7 +45,7 @@ describe('Gilded Rose Inn', () => {
     const item = new NormalItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -59,7 +59,7 @@ describe('Gilded Rose Inn', () => {
     const item = new LegendaryItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn)
@@ -73,7 +73,7 @@ describe('Gilded Rose Inn', () => {
     const item = new LegendaryItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn)
@@ -87,7 +87,7 @@ describe('Gilded Rose Inn', () => {
     const item = new AgedItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -101,7 +101,7 @@ describe('Gilded Rose Inn', () => {
     const item = new AgedItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -115,7 +115,7 @@ describe('Gilded Rose Inn', () => {
     const item = new AgedItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -129,7 +129,7 @@ describe('Gilded Rose Inn', () => {
     const item = new AgedItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -143,7 +143,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -157,7 +157,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -171,7 +171,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -185,7 +185,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -199,7 +199,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -213,7 +213,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -227,7 +227,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
@@ -241,7 +241,7 @@ describe('Gilded Rose Inn', () => {
     const item = new BackstagePassItem(name, sellIn, quality)
     const subject = new GildedRoseInn([item])
 
-    const results = subject.processEndOfDayAndGetUpdatedItems()
+    const results = subject.upateItems()
 
     expect(results[0].name).to.equal(name)
     expect(results[0].sellIn).to.equal(sellIn - 1)
