@@ -1,5 +1,8 @@
 import Item from "./items/item";
 import ItemType from "./item-type";
+import NormalItem from "./items/normal-item";
+import AgedItem from "./items/aged-item";
+import BackstagePassItem from "./items/backstage-pass-item";
 
 export default class GildedRoseInn {
     #items: Array<Item>;
@@ -12,36 +15,40 @@ export default class GildedRoseInn {
     processEndOfDayAndGetUpdatedItems() {
         for (let i = 0; i < this.#items.length; i++) {
             const item = this.#items[i]
-            if(this.#itemType.isLegendary(item)) {
-                
-            } else {
-                this.legacyCode(item)
+            if (this.#itemType.isNormal(item)) {
+                this.processNormalItem(item) 
+            } else if (this.#itemType.isAged(item)) {
+               this.processAgedItem(item) 
+            } else if (this.#itemType.isBackstagePass(item)) {
+                this.processBackstagePassItem(item)
             } 
         }
         return this.#items;
     }
 
-    legacyCode(item: Item) {
-        if (this.#itemType.isAged(item) || this.#itemType.isBackstagePass(item)) {
-            this.incrementQualityUnlessAtMax(item, 1)
-            this.handleBackstageQualityBonus(item) 
-        } else {
+    processNormalItem(item: NormalItem) {
+        this.decrementSellIn(item)
+        this.decrementQualityUnlessAtMin(item, 1)
+        if (this.itemExceededSellIn(item)) {
             this.decrementQualityUnlessAtMin(item, 1)
         }
+    }
 
+    processAgedItem(item: AgedItem) {
         this.decrementSellIn(item)
-
+        this.incrementQualityUnlessAtMax(item, 1)
         if (this.itemExceededSellIn(item)) {
-            if (this.#itemType.isAged(item)) {
-                this.incrementQualityUnlessAtMax(item, 1)
-            } else {
-                if (this.#itemType.isBackstagePass(item)) {
-                    this.setQualityTo0(item)
-                } else {
-                    this.decrementQualityUnlessAtMin(item, 1)
-                }
-            }
+            this.incrementQualityUnlessAtMax(item, 1)
         }
+    }
+
+    processBackstagePassItem(item: BackstagePassItem) {
+        this.decrementSellIn(item)
+        this.incrementQualityUnlessAtMax(item, 1)
+        this.handleBackstageQualityBonus(item) 
+        if (this.itemExceededSellIn(item)) {
+            this.setQualityTo0(item)
+        }    
     }
 
     handleBackstageQualityBonus(item: Item) {
