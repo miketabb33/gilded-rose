@@ -1,4 +1,8 @@
 # Guilded Rose
+
+#### System Requirements:
+* Node JS
+
 ## Setup
 Run npm install to build project dependencies.
 ```
